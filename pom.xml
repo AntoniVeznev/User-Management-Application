@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>USER MANAGEMENT APPLICATION</artifactId>
+    <artifactId>USER-MANAGEMENT-APPLICATION</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>USER MANAGEMENT APPLICATION</name>
-    <description>USER MANAGEMENT APPLICATION</description>
+    <name>USER-MANAGEMENT-APPLICATION</name>
+    <description>USER-MANAGEMENT-APPLICATION</description>
     <properties>
         <java.version>17</java.version>
     </properties>
