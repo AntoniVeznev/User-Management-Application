@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
 
         User user = modelMapper.map(userBindingModel, User.class);
         user.setDateOfBirth(convertedDate);
-
         userRepository.save(user);
 
         return user;
@@ -86,5 +85,13 @@ public class UserServiceImpl implements UserService {
         userById.setId(id);
         userRepository.save(userById);
 
+    }
+
+    @Override
+    public boolean isUserExist(UserBindingModel userBindingModel) {
+
+        User userById = userRepository.findUserById(userBindingModel.getId());
+
+        return userById != null;
     }
 }

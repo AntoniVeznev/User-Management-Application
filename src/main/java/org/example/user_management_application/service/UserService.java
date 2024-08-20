@@ -18,4 +18,5 @@ public interface UserService {
 
     void updateUser(Long id, User user);
 
+    boolean isUserExist(UserBindingModel userBindingModel);
 }

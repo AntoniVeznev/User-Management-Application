@@ -64,9 +64,12 @@ public class UserController {
                 .setPhoneNumber(phoneNumber)
                 .setEmail(email);
 
-
-        User user = userService.createUser(userBindingModel);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        boolean existOrNot = userService.isUserExist(userBindingModel);
+        if (!existOrNot) {
+            User user = userService.createUser(userBindingModel);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.IM_USED);
 
     }
 
