@@ -21,4 +21,7 @@ public interface UserService {
     boolean isUserExist(UserBindingModel userBindingModel);
 
     boolean userExist(Long id);
+
+    List<User> search(String item);
+
 }

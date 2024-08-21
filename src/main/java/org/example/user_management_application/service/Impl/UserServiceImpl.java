@@ -103,4 +103,9 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public List<User> search(String item) {
+        return userRepository.testFindAll(item);
+    }
 }

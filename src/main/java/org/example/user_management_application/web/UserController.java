@@ -112,4 +112,18 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
+
+    //TODO: SEARCH FUNCTIONALITY (работи) ако е празен 204 но контент . ако мачва код 200 окау
+    @GetMapping("api/search/{item}")
+    public ResponseEntity<List<User>> searchUser(@PathVariable String item) {
+
+        List<User> foundMatches = userService.search(item);
+
+        if (foundMatches.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(foundMatches);
+
+    }
 }
