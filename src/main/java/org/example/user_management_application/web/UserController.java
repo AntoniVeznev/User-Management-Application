@@ -113,7 +113,9 @@ public class UserController {
 
     }
 
-    //TODO: SEARCH FUNCTIONALITY (работи) ако е празен 204 но контент . ако мачва код 200 окау
+    //TODO: (РАБОТИ) Търси и връща Юзъри като се подава 1 параметър в Апи-то.
+    // Ако има мач изкарва лист с юзъри и връща код "Ок" (200).
+    // Ако не намира съвпадение връща "No Content" (204).
     @GetMapping("api/search/{item}")
     public ResponseEntity<List<User>> searchUser(@PathVariable String item) {
 
