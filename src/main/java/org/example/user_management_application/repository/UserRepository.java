@@ -10,12 +10,12 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    User findUserById(Long id);
+
     @Query("SELECT u FROM User u order by u.lastName, u.dateOfBirth")
     List<User> giveMeAllUsers();
 
-    User findUserById(Long id);
-
     @Query("SELECT u FROM User u where u.firstName =?1 or u.lastName=?1 or u.email =?1 or u.phoneNumber=?1")
-    List<User> testFindAll(String item);
+    List<User> findUsersBySearchedItem(String item);
 
 }

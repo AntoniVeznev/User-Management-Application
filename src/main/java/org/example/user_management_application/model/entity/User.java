@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User extends BaseEntity {
 
     private String firstName;
@@ -17,6 +17,7 @@ public class User extends BaseEntity {
     private String email;
 
     public User() {
+
     }
 
     @Column(name = "first_name", nullable = false)

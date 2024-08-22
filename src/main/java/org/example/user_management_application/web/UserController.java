@@ -25,12 +25,12 @@ public class UserController {
     @GetMapping("/api/users")
     public ResponseEntity<List<User>> getUsers() {
 
-        List<User> allUser = userService.getAllUser();
+        List<User> allUsers = userService.getAllUsers();
 
-        if (allUser.isEmpty()) {
+        if (allUsers.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(allUser);
+        return ResponseEntity.ok(allUsers);
 
     }
 
@@ -81,7 +81,7 @@ public class UserController {
     }
 
     //TODO: (РАБОТИ)
-    // Трие Юзър при подадено ID.
+    // Изтрива Юзър при подадено ID.
     // Ако Юзъра съществува в базата се изтрива и връща код "No Content" (204).
     // Ако го няма в базата връща код "Not Found" (404).
     @DeleteMapping("/api/delete/{id}")

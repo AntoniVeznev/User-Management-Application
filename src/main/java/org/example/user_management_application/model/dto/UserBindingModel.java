@@ -11,6 +11,7 @@ public class UserBindingModel {
     public String email;
 
     public UserBindingModel() {
+
     }
 
     public Long getId() {

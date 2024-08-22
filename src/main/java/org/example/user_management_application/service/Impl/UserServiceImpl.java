@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUser() {
+    public List<User> getAllUsers() {
         return userRepository.giveMeAllUsers();
     }
 
@@ -89,23 +89,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isUserExist(UserBindingModel userBindingModel) {
-
         User userById = userRepository.findUserById(userBindingModel.getId());
-
         return userById != null;
     }
 
     @Override
     public boolean userExist(Long id) {
         Optional<User> byId = userRepository.findById(id);
-        if (byId.isPresent()) {
-            return true;
-        }
-        return false;
+        return byId.isPresent();
     }
 
     @Override
     public List<User> search(String item) {
-        return userRepository.testFindAll(item);
+        return userRepository.findUsersBySearchedItem(item);
     }
 }
