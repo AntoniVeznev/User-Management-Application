@@ -11,7 +11,7 @@
 IMPORTANT for DB connection:
 
 1). Check out "application.yml" file for database information. I put there my DB username: root; DB password: 1234;
-2). Put your "username" and "password" for the DB in application.yml file.
+2). Put your "username" and your "password" for the DB in application.yml file.
 
 ## REST API endpoints:
 
