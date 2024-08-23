@@ -1,6 +1,6 @@
 # User-Management-Application
 
-This program is based on Java language. It is developed with Spring Boot and Maven. For Database i use MySQL. I wrote some //TODO: above every endpoint in the controller so you can easyly get my idea. I know that its not a good practise to leave TODO: in the code and to post my passwards and usernames at Github ... but yeah. I hope you will like my App. I am still learning REST API-s so there is a room for improvement. 
+This program is based on Java language. It is developed with Spring Boot and Maven. For Database I use MySQL. I wrote some //TODO: above every endpoint in the Rest-Controller so you can easyly get my idea. I know that it is not a good practise to leave TODO: in the code and to post my passwords and usernames at Github ... but yeah. I hope you will like my App. I am still learning REST API-s so there is a room for improvement. 
 
 ## Installation:
 
