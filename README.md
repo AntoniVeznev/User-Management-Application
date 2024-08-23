@@ -15,12 +15,11 @@ IMPORTANT for DB connection:
 
 ## REST API endpoints:
 
-1. Creating a user -> http://localhost:8080/api/create/0/Ivan/Ivanov/2000-12-30/0878495214/shadow@abv.bg
-
-2. Reading one user -> http://localhost:8080/api/user/0
-
-3. Reading all the users (sorted first by Last name then by Date of Birth) -> http://localhost:8080/api/users
-
-4. Search by given word / item -> http://localhost:8080/api/search/Ivan or http://localhost:8080/api/search/0878495214
+1. Creating a User (POST) -> http://localhost:8080/api/create/0/Ivan/Ivanov/2000-12-30/0878495214/shadow@abv.bg
+2. Reading one User (GET) -> http://localhost:8080/api/user/0
+3. Reading all the Users (sorted first by Last name then by Date of Birth) (GET) -> http://localhost:8080/api/users
+4. Search by given word / item (GET) -> http://localhost:8080/api/search/Ivan or http://localhost:8080/api/search/0878495214
+5. Updating a User (PUT) -> http://localhost:8080/api/update/0
+6. Deleting a User (DELETE) -> http://localhost:8080/api/delete/0
 
 
