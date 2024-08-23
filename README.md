@@ -15,7 +15,7 @@ IMPORTANT for DB connection:
 
 ## REST API endpoints:
 
-## I suggest to create 2, 3 or more users when you start testing the functionality of the Web REST API app.
+* I suggest to create 2, 3 or more users when you start testing the functionality of the Web REST API app.
 
 1. Creating a User (POST) -> http://localhost:8080/api/create/0/Ivan/Ivanov/2000-12-30/0878495214/shadow@abv.bg
 2. Reading one User (GET) -> http://localhost:8080/api/user/0
@@ -23,5 +23,6 @@ IMPORTANT for DB connection:
 4. Search by given word / item (GET) -> http://localhost:8080/api/search/Ivan or http://localhost:8080/api/search/0878495214
 5. Updating a User (PUT) -> http://localhost:8080/api/update/0
 6. Deleting a User (DELETE) -> http://localhost:8080/api/delete/0
+
 
 
