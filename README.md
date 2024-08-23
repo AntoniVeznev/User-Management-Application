@@ -12,6 +12,9 @@ IMPORTANT for DB connection:
 2). Put your "username" and "password" for the DB in application.yml file.
 
 ## REST API endpoints:
-Creating a user -> http://localhost:8080/api/create/0/Ivan/Ivanov/2000-12-30/0878495214/shadow@abv.bg
+1. Creating a user -> http://localhost:8080/api/create/0/Ivan/Ivanov/2000-12-30/0878495214/shadow@abv.bg
+2. Reading one user -> http://localhost:8080/api/user/0
+3. Reading all the users (sorted first by Last name then by Date of Birth) -> http://localhost:8080/api/users
+4. 
 
 
