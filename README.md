@@ -1,7 +1,7 @@
 # User-Management-Application
 
 ## Installation:
-1. Download source code.
+1. Download the source code.
 2. Load Project in your Integrated Development Environment (IDE). I use INTELIJ IDEA
 3. Connect the project with database. (I use MySQL).
 4. Press "Run" button.
