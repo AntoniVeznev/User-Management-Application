@@ -18,10 +18,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    //TODO: (РАБОТИ)
-    // Вади всички Юзъри от базата - връща код "Oк" (200).
-    // Ако листа е празен връща - код "No Content" (204).
-    // Листа е подреден 1-во по Фамилно име и 2-ро по Дата на раждане.
     @GetMapping("/api/users")
     public ResponseEntity<List<User>> getUsers() {
 
@@ -34,9 +30,6 @@ public class UserController {
 
     }
 
-    //TODO: (РАБОТИ)
-    // Показва конкретен Юзър по ID от базата - връща код "Oк" (200).
-    // Ако юзъра не съществува връща - код "No Content" (204).
     @GetMapping("/api/user/{userId}")
     public ResponseEntity<Optional<User>> getUser(@PathVariable Long userId) {
 
@@ -48,10 +41,6 @@ public class UserController {
         return ResponseEntity.ok(userById);
     }
 
-    //TODO: (РАБОТИ)
-    // Създава Юзър като подаваме неговото ИД, Първо име, Последно име, Дата на раждане(формат - 2007-12-03 година-месец-ден), Телефон и Имейл.
-    // Ако няма такъв обект в базата го създава и връща код "Created" (201).
-    // Ако има такъв обект връща код "IM Used" (226).
     @PostMapping("/api/create/{id}/{firstName}/{lastName}/{dateOfBirth}/{phoneNumber}/{email}")
     public ResponseEntity<User> createUser(@PathVariable Long id,
                                            @PathVariable String firstName,
@@ -80,10 +69,6 @@ public class UserController {
 
     }
 
-    //TODO: (РАБОТИ)
-    // Изтрива Юзър при подадено ID.
-    // Ако Юзъра съществува в базата се изтрива и връща код "No Content" (204).
-    // Ако го няма в базата връща код "Not Found" (404).
     @DeleteMapping("/api/delete/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) {
 
@@ -97,9 +82,6 @@ public class UserController {
 
     }
 
-    //TODO: (РАБОТИ) Ъпдейтва Юзър при подадено ID.
-    // Ако Юзъра съществува в базата връща код "Ок" (200).
-    // Ако го няма в базата връща код "Not Found" (404).
     @PutMapping("/api/update/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
 
@@ -113,9 +95,6 @@ public class UserController {
 
     }
 
-    //TODO: (РАБОТИ) Търси и връща Юзъри като се подава 1 параметър в Апи-то.
-    // Ако има мач изкарва лист с юзъри и връща код "Ок" (200).
-    // Ако не намира съвпадение връща "No Content" (204).
     @GetMapping("api/search/{item}")
     public ResponseEntity<List<User>> searchUser(@PathVariable String item) {
 

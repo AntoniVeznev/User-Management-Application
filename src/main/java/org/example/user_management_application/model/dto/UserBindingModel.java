@@ -1,6 +1,8 @@
 package org.example.user_management_application.model.dto;
 
 
+import jakarta.validation.constraints.NotNull;
+
 public class UserBindingModel {
 
     public Long id;
@@ -14,6 +16,7 @@ public class UserBindingModel {
 
     }
 
+    @NotNull
     public Long getId() {
         return id;
     }
@@ -23,6 +26,7 @@ public class UserBindingModel {
         return this;
     }
 
+    @NotNull
     public String getFirstName() {
         return firstName;
     }
@@ -32,6 +36,7 @@ public class UserBindingModel {
         return this;
     }
 
+    @NotNull
     public String getLastName() {
         return lastName;
     }
@@ -41,6 +46,7 @@ public class UserBindingModel {
         return this;
     }
 
+    @NotNull
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -50,6 +56,7 @@ public class UserBindingModel {
         return this;
     }
 
+    @NotNull
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -59,6 +66,7 @@ public class UserBindingModel {
         return this;
     }
 
+    @NotNull
     public String getEmail() {
         return email;
     }
