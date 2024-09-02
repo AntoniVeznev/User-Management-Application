@@ -21,19 +21,9 @@ public class UserBindingModel {
         return id;
     }
 
-    public UserBindingModel setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
     @NotNull
     public String getFirstName() {
         return firstName;
-    }
-
-    public UserBindingModel setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
     }
 
     @NotNull
@@ -41,19 +31,9 @@ public class UserBindingModel {
         return lastName;
     }
 
-    public UserBindingModel setLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
     @NotNull
     public String getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public UserBindingModel setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-        return this;
     }
 
     @NotNull
@@ -61,14 +41,34 @@ public class UserBindingModel {
         return phoneNumber;
     }
 
-    public UserBindingModel setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
     @NotNull
     public String getEmail() {
         return email;
+    }
+
+    public UserBindingModel setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public UserBindingModel setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public UserBindingModel setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public UserBindingModel setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+        return this;
+    }
+
+    public UserBindingModel setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
     }
 
     public UserBindingModel setEmail(String email) {
