@@ -7,6 +7,7 @@ import org.example.user_management_application.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,16 +52,17 @@ public class UserService {
     }
 
 
-/*
-    public void updateUser(Long id, UserDTO user) {
+    public void updateUser(Long userId, UserDTO updatedUser) {
 
-        UserDTO userById = userRepository.findUserById(id);
+        User userById = userRepository.findUserById(userId);
 
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-        LocalDate dateOfBirth = user.getDateOfBirth();
-        String email = user.getEmail();
-        String phoneNumber = user.getPhoneNumber();
+        String firstName = updatedUser.getFirstName();
+        String lastName = updatedUser.getLastName();
+        LocalDate dateOfBirth = updatedUser.getDateOfBirth();
+        String email = updatedUser.getEmail();
+        String phoneNumber = updatedUser.getPhoneNumber();
+
+
 
         if (firstName != null) {
             userById.setFirstName(firstName);
@@ -78,13 +80,12 @@ public class UserService {
             userById.setPhoneNumber(phoneNumber);
         }
 
-        userById.setId(id);
         userRepository.save(userById);
 
     }
 
 
-    public boolean isUserExist(UserDTO userBindingModel) {
+   /* public boolean isUserExist(UserDTO userBindingModel) {
         UserDTO userById = userRepository.findUserById(userBindingModel.getId());
         return userById != null;
     }
@@ -98,7 +99,6 @@ public class UserService {
 
     public List<UserDTO> search(String item) {
         return userRepository.findUsersBySearchedItem(item);
-    }
-*/
+    }*/
 
 }

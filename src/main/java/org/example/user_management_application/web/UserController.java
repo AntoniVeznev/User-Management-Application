@@ -70,21 +70,19 @@ public class UserController {
     }
 
 
-    /*@PutMapping("/update/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO user) {
-
-        boolean exist = userService.userExist(id);
-
-        if (!exist) {
+    @PatchMapping("/patch/update/user/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable("id") Long userId, @RequestBody UserDTO updatedUser) {
+        boolean userExist = userService.getUserById(userId).isPresent();
+        if (!userExist) {
             throw new UserNotFoundException();
         }
 
-        userService.updateUser(id, user);
-        return ResponseEntity.ok(user);
+        userService.updateUser(userId, updatedUser);
+        return ResponseEntity.ok(updatedUser);
 
     }
 
-    @GetMapping("/search/{item}")
+    /*@GetMapping("/search/{item}")
     public ResponseEntity<List<UserDTO>> searchUser(@PathVariable String item) {
 
         List<UserDTO> foundMatches = userService.search(item);
