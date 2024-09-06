@@ -1,15 +1,15 @@
 package org.example.user_management_application.web;
 
+import jakarta.validation.Valid;
 import org.example.user_management_application.exception.EmptyDatabaseException;
-import org.example.user_management_application.exception.MatchesNotFoundException;
 import org.example.user_management_application.exception.UserAlreadyExistException;
 import org.example.user_management_application.exception.UserNotFoundException;
-import org.example.user_management_application.model.dto.UserBindingModel;
-import org.example.user_management_application.model.entity.User;
+import org.example.user_management_application.model.dto.UserDTO;
 import org.example.user_management_application.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +23,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
+    @GetMapping("/get/users")
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
 
-        List<User> allUsers = userService.getAllUsers();
-
+        List<UserDTO> allUsers = userService.getAllUsers();
         if (allUsers.isEmpty()) {
             throw new EmptyDatabaseException();
         }
@@ -35,62 +34,44 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<Optional<User>> getUser(@PathVariable Long userId) {
+    @GetMapping("/get/user/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long userId) {
 
-        Optional<User> userById = userService.getUserById(userId);
-
-        if (userById.isEmpty()) {
-            throw new UserNotFoundException();
-        }
-        return ResponseEntity.ok(userById);
-    }
-
-    @PostMapping("/create/{id}/{firstName}/{lastName}/{dateOfBirth}/{phoneNumber}/{email}")
-    public ResponseEntity<User> createUser(@PathVariable Long id,
-                                           @PathVariable String firstName,
-                                           @PathVariable String lastName,
-                                           @PathVariable String dateOfBirth,
-                                           @PathVariable String phoneNumber,
-                                           @PathVariable String email) {
-
-        UserBindingModel userBindingModel = new UserBindingModel();
-
-        userBindingModel
-                .setId(id)
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setDateOfBirth(dateOfBirth)
-                .setPhoneNumber(phoneNumber)
-                .setEmail(email);
-
-        boolean existOrNot = userService.isUserExist(userBindingModel);
-
-        if (existOrNot) {
-            throw new UserAlreadyExistException();
-        }
-
-        User user = userService.createUser(userBindingModel);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        Optional<UserDTO> userById = userService.getUserById(userId);
+        return userById.map(ResponseEntity::ok)
+                .orElseThrow(UserNotFoundException::new);
 
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable Long id) {
 
-        boolean exist = userService.userExist(id);
+    @DeleteMapping("/delete/user/{id}")
+    public ResponseEntity<UserDTO> deleteUserById(@PathVariable("id") Long userId) {
 
-        if (!exist) {
+        boolean userExist = userService.getUserById(userId).isPresent();
+        if (!userExist) {
             throw new UserNotFoundException();
         }
-
-        userService.deleteUser(id);
+        userService.deleteUserById(userId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+
+    @PostMapping("/post/create/user")
+    public ResponseEntity<UserDTO> createUser(@RequestBody @Valid UserDTO newUser, UriComponentsBuilder uriComponentsBuilder) {
+
+        boolean userExist = userService.checkIfUserWithGivenEmailExist(newUser).isPresent();
+        if (userExist) {
+            throw new UserAlreadyExistException();
+        }
+        Long newUserId = userService.createUser(newUser);
+        return ResponseEntity.created(uriComponentsBuilder.path("/api/user/{id}").build(newUserId)).build();
+
+    }
+
+
+    /*@PutMapping("/update/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO user) {
 
         boolean exist = userService.userExist(id);
 
@@ -104,9 +85,9 @@ public class UserController {
     }
 
     @GetMapping("/search/{item}")
-    public ResponseEntity<List<User>> searchUser(@PathVariable String item) {
+    public ResponseEntity<List<UserDTO>> searchUser(@PathVariable String item) {
 
-        List<User> foundMatches = userService.search(item);
+        List<UserDTO> foundMatches = userService.search(item);
 
         if (foundMatches.isEmpty()) {
             throw new MatchesNotFoundException();
@@ -114,5 +95,5 @@ public class UserController {
 
         return ResponseEntity.ok(foundMatches);
 
-    }
+    }*/
 }

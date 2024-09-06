@@ -1,27 +1,104 @@
 package org.example.user_management_application.service;
 
-import org.example.user_management_application.model.dto.UserBindingModel;
+import jakarta.validation.Valid;
+import org.example.user_management_application.model.dto.UserDTO;
 import org.example.user_management_application.model.entity.User;
+import org.example.user_management_application.repository.UserRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UserService {
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
-    Optional<User> getUserById(Long userId);
+    public UserService(UserRepository userRepository, ModelMapper modelMapper) {
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
+    }
 
-    List<User> getAllUsers();
+    public List<UserDTO> getAllUsers() {
+        return userRepository
+                .findAll()
+                .stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .toList();
+    }
 
-    User createUser(UserBindingModel userBindingModel);
+    public Optional<UserDTO> getUserById(Long userId) {
+        return userRepository
+                .findById(userId)
+                .map(user -> modelMapper.map(user, UserDTO.class));
+    }
 
-    void deleteUser(Long id);
+    public void deleteUserById(Long userId) {
+        userRepository.deleteById(userId);
+    }
 
-    void updateUser(Long id, User user);
 
-    boolean isUserExist(UserBindingModel userBindingModel);
+    public Long createUser(UserDTO userDTO) {
+        User newUser = modelMapper.map(userDTO, User.class);
+        return userRepository.save(newUser).getId();
+    }
 
-    boolean userExist(Long id);
+    public Optional<UserDTO> checkIfUserWithGivenEmailExist(@Valid UserDTO newUser) {
+        return userRepository
+                .findUserByEmail(newUser.getEmail())
+                .map(user -> modelMapper.map(user, UserDTO.class));
+    }
 
-    List<User> search(String item);
+
+/*
+    public void updateUser(Long id, UserDTO user) {
+
+        UserDTO userById = userRepository.findUserById(id);
+
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        LocalDate dateOfBirth = user.getDateOfBirth();
+        String email = user.getEmail();
+        String phoneNumber = user.getPhoneNumber();
+
+        if (firstName != null) {
+            userById.setFirstName(firstName);
+        }
+        if (lastName != null) {
+            userById.setLastName(lastName);
+        }
+        if (dateOfBirth != null) {
+            userById.setDateOfBirth(dateOfBirth);
+        }
+        if (email != null) {
+            userById.setEmail(email);
+        }
+        if (phoneNumber != null) {
+            userById.setPhoneNumber(phoneNumber);
+        }
+
+        userById.setId(id);
+        userRepository.save(userById);
+
+    }
+
+
+    public boolean isUserExist(UserDTO userBindingModel) {
+        UserDTO userById = userRepository.findUserById(userBindingModel.getId());
+        return userById != null;
+    }
+
+
+    public boolean userExist(Long id) {
+        Optional<UserDTO> byId = userRepository.findById(id);
+        return byId.isPresent();
+    }
+
+
+    public List<UserDTO> search(String item) {
+        return userRepository.findUsersBySearchedItem(item);
+    }
+*/
 
 }

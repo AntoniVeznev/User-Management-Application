@@ -1,77 +1,69 @@
 package org.example.user_management_application.model.dto;
 
+import jakarta.validation.constraints.*;
 
-import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 
-public class UserBindingModel {
-
-    public Long id;
+public class UserDTO {
     public String firstName;
     public String lastName;
-    public String dateOfBirth;
+    public LocalDate dateOfBirth;
     public String phoneNumber;
     public String email;
 
-    public UserBindingModel() {
+    public UserDTO() {
 
     }
 
-    @NotNull
-    public Long getId() {
-        return id;
-    }
 
-    @NotNull
+    @NotEmpty
     public String getFirstName() {
         return firstName;
     }
 
-    @NotNull
+    @NotEmpty
     public String getLastName() {
         return lastName;
     }
 
+    @Past
     @NotNull
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    @NotNull
+    @NotEmpty
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    @NotNull
+    @Email
+    @NotEmpty
     public String getEmail() {
         return email;
     }
 
-    public UserBindingModel setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public UserBindingModel setFirstName(String firstName) {
+    public UserDTO setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public UserBindingModel setLastName(String lastName) {
+    public UserDTO setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    public UserBindingModel setDateOfBirth(String dateOfBirth) {
+    public UserDTO setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }
 
-    public UserBindingModel setPhoneNumber(String phoneNumber) {
+    public UserDTO setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
 
-    public UserBindingModel setEmail(String email) {
+    public UserDTO setEmail(String email) {
         this.email = email;
         return this;
     }
