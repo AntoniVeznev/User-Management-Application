@@ -1,6 +1,5 @@
 package org.example.user_management_application.service;
 
-import jakarta.validation.Valid;
 import org.example.user_management_application.model.dto.UserDTO;
 import org.example.user_management_application.model.entity.User;
 import org.example.user_management_application.repository.UserRepository;
@@ -13,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
@@ -27,28 +27,42 @@ public class UserService {
                 .stream()
                 .map(user -> modelMapper.map(user, UserDTO.class))
                 .toList();
+
+    }
+
+    public List<UserDTO> getAllUsersSorted() {
+        return userRepository
+                .getAllUsersSorted()
+                .stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .toList();
+
     }
 
     public Optional<UserDTO> getUserById(Long userId) {
         return userRepository
                 .findById(userId)
                 .map(user -> modelMapper.map(user, UserDTO.class));
+
     }
 
     public void deleteUserById(Long userId) {
         userRepository.deleteById(userId);
+
     }
 
 
     public Long createUser(UserDTO userDTO) {
         User newUser = modelMapper.map(userDTO, User.class);
         return userRepository.save(newUser).getId();
+
     }
 
-    public Optional<UserDTO> checkIfUserWithGivenEmailExist(@Valid UserDTO newUser) {
+    public Optional<UserDTO> checkIfUserWithGivenEmailExist(UserDTO newUser) {
         return userRepository
                 .findUserByEmail(newUser.getEmail())
                 .map(user -> modelMapper.map(user, UserDTO.class));
+
     }
 
 
@@ -61,8 +75,6 @@ public class UserService {
         LocalDate dateOfBirth = updatedUser.getDateOfBirth();
         String email = updatedUser.getEmail();
         String phoneNumber = updatedUser.getPhoneNumber();
-
-
 
         if (firstName != null) {
             userById.setFirstName(firstName);
@@ -84,21 +96,10 @@ public class UserService {
 
     }
 
-
-   /* public boolean isUserExist(UserDTO userBindingModel) {
-        UserDTO userById = userRepository.findUserById(userBindingModel.getId());
-        return userById != null;
-    }
-
-
-    public boolean userExist(Long id) {
-        Optional<UserDTO> byId = userRepository.findById(id);
-        return byId.isPresent();
-    }
-
-
-    public List<UserDTO> search(String item) {
+    public List<UserDTO> searchUser(String item) {
         return userRepository.findUsersBySearchedItem(item);
-    }*/
+
+    }
 
 }
+

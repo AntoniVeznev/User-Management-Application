@@ -11,3 +11,4 @@ public class EmptyDatabaseException extends RuntimeException {
     }
 
 }
+

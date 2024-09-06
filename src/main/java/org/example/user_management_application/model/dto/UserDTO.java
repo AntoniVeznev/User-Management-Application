@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
 public class UserDTO {
+
     public String firstName;
     public String lastName;
     public LocalDate dateOfBirth;
@@ -14,7 +15,6 @@ public class UserDTO {
     public UserDTO() {
 
     }
-
 
     @NotEmpty
     public String getFirstName() {

@@ -2,6 +2,7 @@ package org.example.user_management_application.web;
 
 import jakarta.validation.Valid;
 import org.example.user_management_application.exception.EmptyDatabaseException;
+import org.example.user_management_application.exception.MatchesNotFoundException;
 import org.example.user_management_application.exception.UserAlreadyExistException;
 import org.example.user_management_application.exception.UserNotFoundException;
 import org.example.user_management_application.model.dto.UserDTO;
@@ -17,6 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class UserController {
+
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -27,9 +29,24 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> getAllUsers() {
 
         List<UserDTO> allUsers = userService.getAllUsers();
+
         if (allUsers.isEmpty()) {
             throw new EmptyDatabaseException();
         }
+
+        return ResponseEntity.ok(allUsers);
+
+    }
+
+    @GetMapping("/get/sorted/users")
+    public ResponseEntity<List<UserDTO>> getAllUsersSorted() {
+
+        List<UserDTO> allUsers = userService.getAllUsersSorted();
+
+        if (allUsers.isEmpty()) {
+            throw new EmptyDatabaseException();
+        }
+
         return ResponseEntity.ok(allUsers);
 
     }
@@ -38,6 +55,7 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long userId) {
 
         Optional<UserDTO> userById = userService.getUserById(userId);
+
         return userById.map(ResponseEntity::ok)
                 .orElseThrow(UserNotFoundException::new);
 
@@ -48,9 +66,11 @@ public class UserController {
     public ResponseEntity<UserDTO> deleteUserById(@PathVariable("id") Long userId) {
 
         boolean userExist = userService.getUserById(userId).isPresent();
+
         if (!userExist) {
             throw new UserNotFoundException();
         }
+
         userService.deleteUserById(userId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
@@ -61,9 +81,11 @@ public class UserController {
     public ResponseEntity<UserDTO> createUser(@RequestBody @Valid UserDTO newUser, UriComponentsBuilder uriComponentsBuilder) {
 
         boolean userExist = userService.checkIfUserWithGivenEmailExist(newUser).isPresent();
+
         if (userExist) {
             throw new UserAlreadyExistException();
         }
+
         Long newUserId = userService.createUser(newUser);
         return ResponseEntity.created(uriComponentsBuilder.path("/api/user/{id}").build(newUserId)).build();
 
@@ -72,7 +94,9 @@ public class UserController {
 
     @PatchMapping("/patch/update/user/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable("id") Long userId, @RequestBody UserDTO updatedUser) {
+
         boolean userExist = userService.getUserById(userId).isPresent();
+
         if (!userExist) {
             throw new UserNotFoundException();
         }
@@ -82,10 +106,10 @@ public class UserController {
 
     }
 
-    /*@GetMapping("/search/{item}")
-    public ResponseEntity<List<UserDTO>> searchUser(@PathVariable String item) {
+    @GetMapping("/search/{item}")
+    public ResponseEntity<List<UserDTO>> searchUser(@PathVariable("item") String item) {
 
-        List<UserDTO> foundMatches = userService.search(item);
+        List<UserDTO> foundMatches = userService.searchUser(item);
 
         if (foundMatches.isEmpty()) {
             throw new MatchesNotFoundException();
@@ -93,5 +117,5 @@ public class UserController {
 
         return ResponseEntity.ok(foundMatches);
 
-    }*/
+    }
 }

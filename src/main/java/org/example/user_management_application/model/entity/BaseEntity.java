@@ -7,6 +7,7 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class BaseEntity {
+
     private Long id;
 
     public BaseEntity() {
@@ -23,4 +24,6 @@ public abstract class BaseEntity {
         this.id = id;
         return this;
     }
+
 }
+
