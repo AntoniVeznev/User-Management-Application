@@ -10,15 +10,19 @@ This program is based on Java language. It is developed with Spring Boot and Mav
 4. Press "Run" button.
 5. Go to your Postman.
 
+
 ## IMPORTANT for DB connection:
 
 1). Check out "application.yml" file for database information. I put there my DB username: root; DB password: 1234;
+
 2). Put your "username" and your "password" for the DB in application.yml file.
+
 3). Check out DataBaseInit class. There you can change username, passwords and another stuff so the 2 SQL files can extract info into your DB.
+
 
 ## REST API endpoints:
 
-* I suggest to create 2, 3 or more users when you start testing the functionality of the Web REST API app.
+* I use 2 SQL files to auto-initialize some data into DataBase. If you run the program once there is no erorrs. If you stop it then run again there is error that told you that entitis have duplicate ID. This is becouse 2 SQL files and the setting in "application.yml" -> "ddl-auto: none". So... the program is not broken. It works fine.
 
 1. Creating a User (POST) -> http://localhost:8080/api/create/0/Ivan/Ivanov/2000-12-30/0878495214/shadow@abv.bg
 2. Reading one User (GET) -> http://localhost:8080/api/user/0
