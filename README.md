@@ -1,6 +1,6 @@
 # User-Management-Application
 
-This program is based on Java language. It is developed with Spring Boot and Maven. For Database I use MySQL. I wrote some //TODO: above every endpoint in the Rest-Controller so you can easyly get my idea. I know that it is not a good practise to leave TODO: in the code and to post my passwords and usernames at Github ... but yeah. I hope you will like my App. I am still learning REST API-s so there is a room for improvement. 
+This program is based on Java language. It is developed with Spring Boot and Maven. For Database I use MySQL. I hope you will like my App. I am still learning REST API-s so there is a room for improvement. 
 
 ## Installation:
 
@@ -10,11 +10,11 @@ This program is based on Java language. It is developed with Spring Boot and Mav
 4. Press "Run" button.
 5. Go to your Postman.
 
-IMPORTANT for DB connection:
+## IMPORTANT for DB connection:
 
 1). Check out "application.yml" file for database information. I put there my DB username: root; DB password: 1234;
-
 2). Put your "username" and your "password" for the DB in application.yml file.
+3). Check out DataBaseInit class. There you can change username, passwords and another stuff so the 2 SQL files can extract info into your DB.
 
 ## REST API endpoints:
 
