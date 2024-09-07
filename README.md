@@ -28,12 +28,18 @@ This program is based on Java language. It is developed with Spring Boot and Mav
 * This is because the 2 SQL files and the setting in "application.yml" -> "ddl-auto: none". So... the program is not broken. It works fine.
 
 
-1. Creating a User (POST) -> http://localhost:8080/api/create/0/Ivan/Ivanov/2000-12-30/0878495214/shadow@abv.bg
-2. Reading one User (GET) -> http://localhost:8080/api/user/0
-3. Reading all the Users (sorted first by Last name then by Date of Birth) (GET) -> http://localhost:8080/api/users
-4. Search by given word / item (GET) -> http://localhost:8080/api/search/Ivan or http://localhost:8080/api/search/0878495214
-5. Updating a User (PUT) -> http://localhost:8080/api/update/0
-6. Deleting a User (DELETE) -> http://localhost:8080/api/delete/0
+1. Reading all Users (GET) (NOT SORTED) -> http://localhost:8080/api/get/users
+2. Reading all Users (GET) (SORTED - first by lastname, then by birth date) -> http://localhost:8080/api/get/sorted/users
+3. Reading one User (GET) -> http://localhost:8080/api/get/user/1
+4. Deleting a User (DELETE) -> http://localhost:8080/api/delete/user/1
+5. Creating a User (POST) -> http://localhost:8080/api/post/create/user
+6. Updating a User (PATCH) -> http://localhost:8080/api/patch/update/user/1
+7. Search by given word (GET) -> http://localhost:8080/api/get/search/Svilen OR http://localhost:8080/api/get/search/Ivanov OR http://localhost:8080/api/get/search/0993424235 OR http://localhost:8080/api/get/search/gosho_2000@abv.bg
+
+
+
+
+
 
 
 
