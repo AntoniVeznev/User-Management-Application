@@ -1,6 +1,16 @@
 # User-Management-Application
 
-This program is based on Java language. It is developed with Spring Boot and Maven. For Database I use MySQL. I wrote some //TODO: above every endpoint in the Rest-Controller so you can easyly get my idea. I know that it is not a good practise to leave TODO: in the code and to post my passwords and usernames at Github ... but yeah. I hope you will like my App. I am still learning REST API-s so there is a room for improvement. 
+This program is based on Java language. It is developed with Spring Boot and Maven. For Database I use MySQL. I hope you will like my App. I am still learning REST API-s so there is a room for improvement. 
+
+
+## IMPORTANT for DB connection:
+
+1). Check out "application.yml" file for database information. I put there my DB username: root; DB password: 1234;
+
+2). Put your "username" and your "password" for the DB in application.yml file.
+
+3). Check out DataBaseInit class. There you can change username, passwords, url and driver so the 2 SQL files can extract the data into your DataBase.
+
 
 ## Installation:
 
@@ -8,24 +18,28 @@ This program is based on Java language. It is developed with Spring Boot and Mav
 2. Load the Project in your Integrated Development Environment (IDE). I use INTELIJ IDEA
 3. Connect the project with database. (I use MySQL).
 4. Press "Run" button.
-5. Go to your Postman.
+5. Go to your Postman!!!
 
-IMPORTANT for DB connection:
-
-1). Check out "application.yml" file for database information. I put there my DB username: root; DB password: 1234;
-
-2). Put your "username" and your "password" for the DB in application.yml file.
 
 ## REST API endpoints:
 
-* I suggest to create 2, 3 or more users when you start testing the functionality of the Web REST API app.
+* I use 2 SQL files to auto-initialize some data into DataBase. If you run the program once there is no erorrs!
+* If you stop it then run it again there is error -> "Entitis have duplicate IDs".
+* This is because the 2 SQL files and the setting in "application.yml" -> "ddl-auto: none". So... the program is not broken. It works fine.
 
-1. Creating a User (POST) -> http://localhost:8080/api/create/0/Ivan/Ivanov/2000-12-30/0878495214/shadow@abv.bg
-2. Reading one User (GET) -> http://localhost:8080/api/user/0
-3. Reading all the Users (sorted first by Last name then by Date of Birth) (GET) -> http://localhost:8080/api/users
-4. Search by given word / item (GET) -> http://localhost:8080/api/search/Ivan or http://localhost:8080/api/search/0878495214
-5. Updating a User (PUT) -> http://localhost:8080/api/update/0
-6. Deleting a User (DELETE) -> http://localhost:8080/api/delete/0
+
+1. Reading all Users (GET) (NOT SORTED) -> http://localhost:8080/api/get/users
+2. Reading all Users (GET) (SORTED - first by lastname, then by birth date) -> http://localhost:8080/api/get/sorted/users
+3. Reading one User (GET) -> http://localhost:8080/api/get/user/1
+4. Deleting a User (DELETE) -> http://localhost:8080/api/delete/user/1
+5. Creating a User (POST) -> http://localhost:8080/api/post/create/user
+6. Updating a User (PATCH) -> http://localhost:8080/api/patch/update/user/1
+7. Search by given word (GET) -> http://localhost:8080/api/get/search/Svilen OR http://localhost:8080/api/get/search/Ivanov OR http://localhost:8080/api/get/search/0993424235 OR http://localhost:8080/api/get/search/gosho_2000@abv.bg
+
+
+
+
+
 
 
 
