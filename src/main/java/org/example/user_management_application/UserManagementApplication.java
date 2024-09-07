@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @OpenAPIDefinition(
         info = @Info(
-                title = "User management application",
+                title = "User Management Application",
                 version = "1.0.0",
-                description = "This project is made for Markovski-solutions",
+                description = "This project is made for Markovski-Solutions",
                 termsOfService = "",
                 contact = @Contact(
                         name = "Antoni Veznev",
