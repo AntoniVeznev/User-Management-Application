@@ -97,7 +97,11 @@ public class UserService {
     }
 
     public List<UserDTO> searchUser(String item) {
-        return userRepository.findUsersBySearchedItem(item);
+        return userRepository
+                .findUsersBySearchedItem(item)
+                .stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .toList();
 
     }
 

@@ -106,7 +106,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/search/{item}")
+    @GetMapping("/get/search/{item}")
     public ResponseEntity<List<UserDTO>> searchUser(@PathVariable("item") String item) {
 
         List<UserDTO> foundMatches = userService.searchUser(item);

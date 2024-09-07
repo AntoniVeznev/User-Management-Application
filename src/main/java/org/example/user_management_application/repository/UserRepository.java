@@ -1,6 +1,5 @@
 package org.example.user_management_application.repository;
 
-import org.example.user_management_application.model.dto.UserDTO;
 import org.example.user_management_application.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,10 +16,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findUserById(Long userId);
 
     @Query("SELECT u FROM User u order by u.lastName, u.dateOfBirth")
-    List<UserDTO> getAllUsersSorted();
+    List<User> getAllUsersSorted();
 
     @Query("SELECT u FROM User u where u.firstName =?1 or u.lastName=?1 or u.email =?1 or u.phoneNumber=?1")
-    List<UserDTO> findUsersBySearchedItem(String item);
+    List<User> findUsersBySearchedItem(String item);
 
 }
 
