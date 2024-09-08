@@ -1,8 +1,9 @@
 INSERT INTO `users`
     (`id`, `first_name`, `last_name`, `date_of_birth`, `phone_number`, `email`)
 VALUES
-    (1, "Antoni", "Veznev", '1989-6-16', "0886379458", "antoni_1989@abv.bg"),
-    (2, "Svilen", "Veznev", '1957-9-10', "0892214244", "svilen_1957@abv.bg"),
-    (3, "Krasia", "Vezneva", '1960-2-02', "0892753359", "krasia_1960@abv.bg"),
-    (4, "Ivan", "Ivanov", '1995-1-15', "0884564658", "ivan_1995@abv.bg"),
-    (5, "Gosho", "Goshev", '2000-4-27', "0993424235", "gosho_2000@abv.bg");
+    (1, "Petar", "Ivanov", '2000-9-21', "0886786521", "petarivanov@gmail.com"),
+    (2, "Vesko", "Ivanov", '1970-6-16', "0886123458", "shadow69@abv.bg"),
+    (3, "Yordan", "Ivanov", '1950-3-10', "0886953458", "y_ivanov@gmail.com"),
+    (4, "Iveta", "Baleva", '1975-5-10', "0886325455", "princesa@abv.bg"),
+    (5, "Viki", "Cvetkova", '1985-12-20', "0894256784", "viki-the_winner@gmail.com"),
+    (6, "Zornica", "Avramova", '1995-1-1', "0897555323", "zori_1995@abv.bg");
