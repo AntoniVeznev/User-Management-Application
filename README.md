@@ -27,6 +27,7 @@ This program is based on Java language. It is developed with Spring Boot and Mav
 * If you stop it then run it again there is error -> "Entitis have duplicate IDs".
 * This is because the 2 SQL files and the setting in "application.yml" -> "ddl-auto: none". So... the program is not broken. It works fine.
 
+LINK Swagger REST API Documentation -> http://localhost:8080/swagger-ui/index.html
 
 1. Reading all Users (GET) (NOT SORTED) -> http://localhost:8080/api/get/users
 2. Reading all Users (GET) (SORTED - first by lastname, then by birth date) -> http://localhost:8080/api/get/sorted/users
