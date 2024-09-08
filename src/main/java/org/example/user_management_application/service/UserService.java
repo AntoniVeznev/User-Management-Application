@@ -1,9 +1,14 @@
 package org.example.user_management_application.service;
 
+import org.example.user_management_application.exception.EmptyDatabaseException;
+import org.example.user_management_application.exception.MatchesNotFoundException;
+import org.example.user_management_application.exception.UserAlreadyExistException;
+import org.example.user_management_application.exception.UserNotFoundException;
 import org.example.user_management_application.model.dto.UserDTO;
 import org.example.user_management_application.model.entity.User;
 import org.example.user_management_application.repository.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,49 +27,53 @@ public class UserService {
     }
 
     public List<UserDTO> getAllUsers() {
-        return userRepository
-                .findAll()
-                .stream()
-                .map(user -> modelMapper.map(user, UserDTO.class))
-                .toList();
-
+        List<User> allUsers = userRepository.findAll();
+        if (allUsers.isEmpty()) {
+            throw new EmptyDatabaseException(HttpStatus.NO_CONTENT, "The Database is empty!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        } else {
+            return allUsers.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
+        }
     }
 
     public List<UserDTO> getAllUsersSorted() {
-        return userRepository
-                .getAllUsersSorted()
-                .stream()
-                .map(user -> modelMapper.map(user, UserDTO.class))
-                .toList();
-
+        List<User> allSortedUsers = userRepository.getAllUsersSorted();
+        if (allSortedUsers.isEmpty()) {
+            throw new EmptyDatabaseException(HttpStatus.NO_CONTENT, "The Database is empty!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        } else {
+            return allSortedUsers.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
+        }
     }
 
-    public Optional<UserDTO> getUserById(Long userId) {
-        return userRepository
-                .findById(userId)
-                .map(user -> modelMapper.map(user, UserDTO.class));
-
+    public UserDTO getUserById(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "User not found!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"));
+        return modelMapper.map(user, UserDTO.class);
     }
 
     public void deleteUserById(Long userId) {
         userRepository.deleteById(userId);
-
     }
 
 
     public Long createUser(UserDTO userDTO) {
         User newUser = modelMapper.map(userDTO, User.class);
         return userRepository.save(newUser).getId();
-
     }
 
-    public Optional<UserDTO> checkIfUserWithGivenEmailExist(UserDTO newUser) {
-        return userRepository
-                .findUserByEmail(newUser.getEmail())
-                .map(user -> modelMapper.map(user, UserDTO.class));
-
+    public void checkIfUserWithGivenEmailExist(UserDTO newUser) {
+        Optional<User> userByEmail = userRepository.findUserByEmail(newUser.getEmail());
+        if (userByEmail.isPresent()) {
+            throw new UserAlreadyExistException(HttpStatus.CONFLICT, "User already exists!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
     }
 
+    public List<UserDTO> searchUser(String item) {
+        List<User> allUsersBySearchedItem = userRepository.findUsersBySearchedItem(item);
+        if (allUsersBySearchedItem.isEmpty()) {
+            throw new MatchesNotFoundException(HttpStatus.NO_CONTENT, "Matches not found!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        } else {
+            return allUsersBySearchedItem.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
+        }
+    }
 
     public void updateUser(Long userId, UserDTO updatedUser) {
 
@@ -95,15 +104,4 @@ public class UserService {
         userRepository.save(userById);
 
     }
-
-    public List<UserDTO> searchUser(String item) {
-        return userRepository
-                .findUsersBySearchedItem(item)
-                .stream()
-                .map(user -> modelMapper.map(user, UserDTO.class))
-                .toList();
-
-    }
-
 }
-

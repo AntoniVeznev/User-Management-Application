@@ -1,14 +1,14 @@
 package org.example.user_management_application.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 @ResponseStatus(HttpStatus.NO_CONTENT)
-public class EmptyDatabaseException extends RuntimeException {
-
-    public EmptyDatabaseException() {
-        super("No users in the Database!");
+public class EmptyDatabaseException extends ResponseStatusException {
+    public EmptyDatabaseException(HttpStatusCode status, String reason) {
+        super(status, reason);
     }
-
 }
 
