@@ -1,24 +1,27 @@
+
 # User-Management-Application
 
-This program is based on Java language. It is developed with Spring Boot and Maven. For Database I use MySQL. I hope you will like my App. I am still learning REST API-s so there is a room for improvement. 
-
-
-## IMPORTANT for DB connection:
-
-1). Check out "application.yml" file for database information. I put there my DB username: root; DB password: 1234;
-
-2). Put your "username" and your "password" for the DB in application.yml file.
-
-3). Check out DataBaseInit class. There you can change username, passwords, url and driver so the 2 SQL files can extract the data into your DataBase.
-
+This program is based on Java language.
+It is developed with Spring Boot and Maven. 
+For Database I use MySQL.
+There is a Swagger API Documentation link below.
 
 ## Installation:
 
 1. Download the source code.
-2. Load the Project in your Integrated Development Environment (IDE). I use INTELIJ IDEA
-3. Connect the project with database. (I use MySQL).
-4. Press "Run" button.
+
+2. Load the Project in your Integrated Development Environment (IDE). I use INTELIJ IDEA.
+
+3. Connect the project with your DATABASE. (I use MySQL). Check out "application.yml" file for DB connection info. I put my DB username: root; DB password: 1234;
+Put your "username" and "password" for your DB in application.yml file. After you setup your DB go and check out folder - "initialization" and class - "DataBaseInit".
+There you MUST change Username, Password, Url and DriverClassName so the 2 SQL files - "data.sql" & "schema.sql" can extract the data correctly into your DB when you start the Application.
+
+4. Press "Run" button and the Application will start. If you are missing the run button go to the main class - "UserManagementApplication" and run it from there.
+   
 5. Go to your Postman!!!
+
+
+
 
 
 ## REST API endpoints:
