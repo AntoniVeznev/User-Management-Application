@@ -35,7 +35,7 @@ LINK Swagger REST API Documentation -> http://localhost:8080/swagger-ui/index.ht
 4. Deleting a User (DELETE) -> http://localhost:8080/api/delete/user/1
 5. Creating a User (POST) -> http://localhost:8080/api/post/create/user
 6. Updating a User (PATCH) -> http://localhost:8080/api/patch/update/user/1
-7. Search by given word (GET) -> http://localhost:8080/api/get/search/Ivanov 
+7. Search by given word (GET) -> http://localhost:8080/api/get/search/Iveta OR http://localhost:8080/api/get/search/0894256784 OR http://localhost:8080/api/get/search/zori_1995@abv.bg OR http://localhost:8080/api/get/search/Ivanov
 
 
 
