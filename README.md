@@ -20,7 +20,7 @@ There you MUST change Username, Password, Url and DriverClassName so the 2 SQL f
 
 5. Press "Run" button and the Application will start. If you are missing the run button go to the main class - "UserManagementApplication" and run it from there.
    
-6. Go to your Postman!!!
+6. Go to your Postman OR use the Swagger LINK below!!!
 
 
 
