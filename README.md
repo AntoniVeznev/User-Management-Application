@@ -25,6 +25,10 @@ There you MUST change Username, Password, Url and DriverClassName so the 2 SQL f
 
 ## Important:
 
+When you start the program for the first time it's working fine. If you re-run OR stop and run the program for the second time there is an error. This error is normal to be shown so don't panic! :) The error that is printed at the console is "Duplicate entry '1' for key 'users.PRIMARY'". This is caused by the 2 SQL files that insert automatically data in the DB when you start the program for the first time. So if you start the program again, it trys to insert the same data again but we already have the data in our DB. 
+So i fix this error with a simple trick. Just drop table "users" everytime before you start or rerun the Application. :)
+
+There is 1 error when you start the program for the second time.
 * I use 2 SQL files to auto-initialize some data into DataBase. If you run the program once there is no erorrs!
 * If you stop it then run it again there is error -> "Entitis have duplicate IDs".
 * This is because the 2 SQL files and the setting in "application.yml" -> "ddl-auto: none". So... the program is not broken. It works fine.
