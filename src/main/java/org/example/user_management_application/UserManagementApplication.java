@@ -11,16 +11,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @OpenAPIDefinition(
         info = @Info(
                 title = "User Management Application",
-                version = "1.0.0",
-                description = "This project is made for Markovski-Solutions",
+                version = "2.5.2",
+                description = "This project is made by Antoni Veznev for Markovski-Solutions",
                 termsOfService = "",
                 contact = @Contact(
                         name = "Antoni Veznev",
-                        email = "antoniveznev@gmail.com"
+                        email = "antoniveznev@gmail.com",
+                        url = "https://github.com/AntoniVeznev?tab=repositories"
                 ),
                 license = @License(
-                        name = "license",
-                        url = "Antoni Veznev"
+                        name = "MIT License",
+                        url = "https://github.com/AntoniVeznev/User-Management-Application/blob/main/LICENSE"
                 )
         )
 )

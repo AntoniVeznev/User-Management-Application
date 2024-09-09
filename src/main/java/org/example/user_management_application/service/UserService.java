@@ -1,5 +1,6 @@
 package org.example.user_management_application.service;
 
+import org.example.user_management_application.constants.MagicStrings;
 import org.example.user_management_application.exception.EmptyDatabaseException;
 import org.example.user_management_application.exception.MatchesNotFoundException;
 import org.example.user_management_application.exception.UserAlreadyExistException;
@@ -27,25 +28,37 @@ public class UserService {
     }
 
     public List<UserDTO> getAllUsers() {
+
         List<User> allUsers = userRepository.findAll();
+
         if (allUsers.isEmpty()) {
-            throw new EmptyDatabaseException(HttpStatus.NO_CONTENT, "The Database is empty!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            throw new EmptyDatabaseException(HttpStatus.NO_CONTENT, MagicStrings.EMPTY_DATABASE);
         } else {
-            return allUsers.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
+            return allUsers
+                    .stream()
+                    .map(user -> modelMapper.map(user, UserDTO.class))
+                    .toList();
         }
     }
 
     public List<UserDTO> getAllUsersSorted() {
+
         List<User> allSortedUsers = userRepository.getAllUsersSorted();
+
         if (allSortedUsers.isEmpty()) {
-            throw new EmptyDatabaseException(HttpStatus.NO_CONTENT, "The Database is empty!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            throw new EmptyDatabaseException(HttpStatus.NO_CONTENT, MagicStrings.EMPTY_DATABASE);
         } else {
-            return allSortedUsers.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
+            return allSortedUsers
+                    .stream()
+                    .map(user -> modelMapper.map(user, UserDTO.class))
+                    .toList();
         }
     }
 
     public UserDTO getUserById(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "User not found!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"));
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, MagicStrings.USER_NOT_FOUND));
         return modelMapper.map(user, UserDTO.class);
     }
 
@@ -60,18 +73,25 @@ public class UserService {
     }
 
     public void checkIfUserWithGivenEmailExist(UserDTO newUser) {
+
         Optional<User> userByEmail = userRepository.findUserByEmail(newUser.getEmail());
+
         if (userByEmail.isPresent()) {
-            throw new UserAlreadyExistException(HttpStatus.CONFLICT, "User already exists!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            throw new UserAlreadyExistException(HttpStatus.CONFLICT, MagicStrings.USER_ALREADY_EXIST);
         }
     }
 
     public List<UserDTO> searchUser(String item) {
+
         List<User> allUsersBySearchedItem = userRepository.findUsersBySearchedItem(item);
+
         if (allUsersBySearchedItem.isEmpty()) {
-            throw new MatchesNotFoundException(HttpStatus.NO_CONTENT, "Matches not found!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            throw new MatchesNotFoundException(HttpStatus.NO_CONTENT, MagicStrings.MATCHES_NOT_FOUND);
         } else {
-            return allUsersBySearchedItem.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
+            return allUsersBySearchedItem
+                    .stream()
+                    .map(user -> modelMapper.map(user, UserDTO.class))
+                    .toList();
         }
     }
 
