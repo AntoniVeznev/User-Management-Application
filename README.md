@@ -23,15 +23,14 @@ There you MUST change Username, Password, Url and DriverClassName so the 2 SQL f
    
 6. Go to your Postman OR use the Swagger LINK below!!!
 
-
-
-
-
-## REST API endpoints:
+## Important:
 
 * I use 2 SQL files to auto-initialize some data into DataBase. If you run the program once there is no erorrs!
 * If you stop it then run it again there is error -> "Entitis have duplicate IDs".
 * This is because the 2 SQL files and the setting in "application.yml" -> "ddl-auto: none". So... the program is not broken. It works fine.
+
+
+## REST API endpoints:
 
 LINK Swagger REST API Documentation -> http://localhost:8080/swagger-ui/index.html
 
