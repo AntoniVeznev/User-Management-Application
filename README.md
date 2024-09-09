@@ -1,10 +1,10 @@
 
 # User-Management-Application
 
-This program is based on Java language.
-It is developed with Spring Boot and Maven. 
-For Database I use MySQL.
-There is a Swagger API Documentation link below.
+1. This program is based on Java language.
+2. It is developed with Spring Boot and Maven. 
+3. For Database I use MySQL.
+4. There is a Swagger API Documentation link below.
 
 ## Installation:
 
