@@ -13,12 +13,14 @@
 2. Load the Project in your Integrated Development Environment (IDE). I use INTELIJ IDEA.
 
 3. Connect the project with your DATABASE. (I use MySQL). Check out "application.yml" file for DB connection info. I put my DB username: root; DB password: 1234;
-Put your "username" and "password" for your DB in application.yml file. After you setup your DB go and check out folder - "initialization" and class - "DataBaseInit".
+Put your "username" and "password" for your DB in application.yml file.
+
+4. After you setup your DB go and check out folder - "initialization" and class - "DataBaseInit".
 There you MUST change Username, Password, Url and DriverClassName so the 2 SQL files - "data.sql" & "schema.sql" can extract the data correctly into your DB when you start the Application.
 
-4. Press "Run" button and the Application will start. If you are missing the run button go to the main class - "UserManagementApplication" and run it from there.
+5. Press "Run" button and the Application will start. If you are missing the run button go to the main class - "UserManagementApplication" and run it from there.
    
-5. Go to your Postman!!!
+6. Go to your Postman!!!
 
 
 
