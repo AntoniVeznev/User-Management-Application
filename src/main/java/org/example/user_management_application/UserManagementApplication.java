@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         info = @Info(
                 title = "User Management Application",
                 version = "2.5.2",
-                description = "This project is made by Antoni Veznev for Markovski-Solutions",
+                description = "This project is made by Antoni Veznev.",
                 termsOfService = "",
                 contact = @Contact(
                         name = "Antoni Veznev",
