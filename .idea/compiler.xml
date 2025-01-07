@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="User-Management-Application" />
+        <module name="USER-MANAGEMENT-APPLICATION" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="USER-MANAGEMENT-APPLICATION" options="-parameters" />
       <module name="User-Management-Application" options="-parameters" />
       <module name="User_Management_Application" options="-parameters" />
     </option>
